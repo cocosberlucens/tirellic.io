@@ -103,7 +103,9 @@ b+3c=2 & \rightarrow & \mathbf{b=\frac{19}{14}} \\
 $$
 
 then $r_{1}$
-$$\begin{matrix} 
+
+$$
+\begin{matrix} 
 b & 2b & 5b\\
  & + & \\
 3c & 6c & c \\
