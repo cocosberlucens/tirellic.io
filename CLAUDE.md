@@ -4,24 +4,58 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**tirellic.io** is Corrado's personal portfolio and knowledge-sharing site, hosted at `tirellic.io`. It publishes selected ML learning notes and healthcare analytics project writeups from the Obsidian vault **psychic-patterns**.
+**tirellic.io** is Corrado's personal portfolio and knowledge-sharing site — a digital garden and living CV. It publishes selected ML learning notes and healthcare analytics project writeups from the Obsidian vault **psychic-patterns**.
 
-## Technical Stack (planned)
+## Technical Stack
 
-- **Static site generator**: Quartz (purpose-built for Obsidian vaults — supports `[[wikilinks]]`, backlinks, graph view, LaTeX)
-- **Hosting**: Cloudflare Pages (free tier, auto-builds on push)
-- **Domain**: `tirellic.io` — purchased and managed via Cloudflare Registrar (DNSSEC enabled, 2FA configured)
-- **Content sources**:
-  - `psychic-patterns/ml-code-companion/notes/` — ML curriculum notes (gated by `publish: true` frontmatter)
-  - `refactored-umbrella/projects/` — applied DB/BI work at the LHA (e.g. CCI vs rowstore comparison, ambulatory pipeline rebuild)
+- **Static site generator**: Quartz v4 (supports `[[wikilinks]]`, backlinks, graph view, KaTeX)
+- **Hosting**: Cloudflare Pages (auto-builds on push to `v4` branch)
+- **Domain**: `tirellic.io` — Cloudflare Registrar (DNSSEC enabled, 2FA configured)
+- **Theme**: Kinetic Whisper — warm off-white, Space Grotesk headings, Source Serif 4 body, red/blue accent system
+- **Content source**: `psychic-patterns/ml-code-companion/notes/` only (gated by `publish: true` frontmatter)
 
-## Architecture
+## Commands
 
-The deployment pipeline is: push to GitHub repo → Cloudflare Pages watches repo → auto-build → served at `tirellic.io`. No GitHub Actions or YAML workflows needed.
+| Command | Purpose |
+|---------|---------|
+| `./scripts/publish.sh` | Sync `publish: true` notes from vault, commit, push |
+| `./scripts/publish.sh --preview` | Sync + local preview server |
+| `./scripts/publish.sh --sync-only` | Sync without commit/push (used by tests) |
+| `./scripts/publish-test.sh` | Run 8 integration tests (17 assertions) |
+| `npx quartz build` | Build site to `public/` |
+| `npx quartz build --serve` | Build + local dev server |
 
-Content is selectively published from the Obsidian vault — not the entire vault. A Claude Code skill for managing publication workflow is planned.
+## Content Pipeline
+
+1. Edit notes in Obsidian (psychic-patterns vault)
+2. Set `publish: true` in frontmatter
+3. Run `./scripts/publish.sh` — copies notes to `content/`, rewrites `topic:` → `title:`, commits, pushes
+4. Cloudflare Pages auto-builds and deploys
+
+The publish script copies only **referenced** attachments (parses `![[file]]` and `![](attachments/file)` from published notes). Orphaned images from paste-then-delete in Obsidian are excluded.
+
+Content from `refactored-umbrella` (work projects) is handled manually — translated, sanitized, placed in `psychic-patterns/ml-code-companion/notes/` with `publish: true`.
+
+## Key Files
+
+- `quartz.config.ts` — site settings, Kinetic Whisper palette, ExplicitPublish filter
+- `quartz/styles/custom.scss` — custom CSS (nav gradient, math blocks, tags, backlinks)
+- `content/index.md` — landing page
+- `scripts/publish.sh` — vault-to-content sync script
+
+## LaTeX Compatibility
+
+Quartz KaTeX is stricter than Obsidian. Notes must follow these rules:
+- `$$` delimiters on their own lines with blank lines above and below
+- No `\begin{equation}` inside `$$` — use `\tag{N}` directly
+- Inline math with single `$` works normally
+
+## Design Spec
+
+Full design documentation: `docs/superpowers/specs/2026-03-26-quartz-site-design.md`
 
 ## Related Repositories
 
-- **psychic-patterns**: Obsidian knowledge vault containing the source notes (ML curriculum notes, practical ML project docs)
-- **ml-code-companion**: The structured ML learning curriculum that produces the notes published here
+- **psychic-patterns**: Obsidian knowledge vault (source notes)
+- **ml-code-companion**: ML learning curriculum that produces the notes
+- **refactored-umbrella**: Corrado's work vault (DB/BI at the LHA) — occasional content source
