@@ -1,3 +1,58 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// Kinetic Whisper — custom visual elements
+// Ref: docs/superpowers/specs/2026-03-26-quartz-site-design.md
+
+// Nav bar gradient accent line (red → blue → transparent)
+// Header component renders a plain <header> element
+header {
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, #e63946, #4a8fe7, transparent 70%) 1;
+}
+
+// Links: subtle red underline on internal links
+// Note: a.internal also carries background-color: var(--highlight) from base.scss
+a.internal {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(230, 57, 70, 0.3);
+  &:hover {
+    border-bottom-color: #e63946;
+  }
+}
+
+// Math blocks: warm background with red left border
+// Quartz uses .math.math-display as the compound class (not standalone .math-display)
+.math.math-display {
+  background: #ebe5de;
+  border-left: 3px solid #e63946;
+  padding: 1rem 1.5rem;
+  border-radius: 0 4px 4px 0;
+}
+
+// Tags: geometric sans-serif, uppercase, compact
+// TagList renders <a class="internal tag-link"> — this selector is confirmed correct
+a.internal.tag-link {
+  font-family: "Space Grotesk", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+// Backlinks: blue pills
+// Backlinks.tsx renders div.backlinks > ul > li > a.internal
+// Override the default internal-link highlight background with a blue pill
+.backlinks a {
+  color: #4a8fe7;
+  background: rgba(74, 143, 231, 0.08);
+  padding: 0.25rem 0.75rem;
+  border-radius: 3px;
+  border-bottom: none;
+}
+
+// Headings: tight letter-spacing
+h1,
+h2,
+h3 {
+  letter-spacing: -0.3px;
+}
