@@ -25,10 +25,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `npx quartz build` | Build site to `public/` |
 | `npx quartz build --serve` | Build + local dev server |
 
+## Content Management
+
+Use the `/obsidian` skill to prepare notes before publishing. Required frontmatter properties:
+
+| Property | Example | Notes |
+|----------|---------|-------|
+| `topic` | `"conditional probability and Bayes' rule"` | Becomes `title:` on publish (publish script rewrites) |
+| `publish` | `false` | Flip to `true` when ready to go live |
+| `created` | `2026-03-28` | Date type |
+| `updated` | `2026-03-28` | Date type |
+| `tags` | `[probability, bayes]` | List type — drives tag pages on the site |
+
+```bash
+OBS="/Applications/Obsidian.app/Contents/MacOS/Obsidian"
+$OBS property:set name="topic" value="sum and product rule" file="Untitled" vault="psychic-patterns"
+$OBS property:set name="publish" value="false" file="Untitled" vault="psychic-patterns"
+$OBS property:set name="created" value="2026-03-28" type=date file="Untitled" vault="psychic-patterns"
+$OBS property:set name="tags" value="[probability, combinatorics]" type=list file="Untitled" vault="psychic-patterns"
+```
+
 ## Content Pipeline
 
-1. Edit notes in Obsidian (psychic-patterns vault)
-2. Set `publish: true` in frontmatter
+1. Prepare note in Obsidian — use `/obsidian` skill to set frontmatter properties
+2. Set `publish: true` when ready
 3. Run `./scripts/publish.sh` — copies notes to `content/`, rewrites `topic:` → `title:`, commits, pushes
 4. Cloudflare Pages auto-builds and deploys
 
