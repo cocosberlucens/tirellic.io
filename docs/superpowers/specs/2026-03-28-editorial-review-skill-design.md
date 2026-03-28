@@ -114,10 +114,12 @@ The reviewer must always consult the curriculum before assessing correctness:
 
 ### Sources (in priority order)
 
-1. **Progress files**: `ml-code-companion/.claude/skills/ml-code-companion/references/progress/` — current phase, completed bites, assessment scores, flagged concepts
-2. **Textbook indices**: `ml-code-companion/.claude/skills/ml-code-companion/books/` — verify claims against the books Corrado is actually studying from
-3. **Notebook content**: `ml-code-companion/notebooks/` — what was actually covered, at what depth
-4. **Note corpus**: `psychic-patterns/ml-code-companion/notes/` — what other notes exist, how this one fits in the graph
+1. **Git history** (most current): `git -C ml-code-companion log --oneline -20` — reveals what Corrado is actively working on *right now*, even before progress files are updated. Notes are often taken mid-notebook (e.g. `sum-and-product-rule` note taken during `detours/ps4cs-ch0-prerequisites.py` which hasn't reached progress files yet). Cross-reference the note's `created` date with recent commits to understand the learning context.
+2. **Progress files**: `ml-code-companion/.claude/skills/ml-code-companion/references/progress/` — current phase, completed bites, assessment scores, flagged concepts. Updated at notebook completion, so may lag behind active work.
+3. **Textbook indices**: `ml-code-companion/.claude/skills/ml-code-companion/books/` — verify claims against the books Corrado is actually studying from
+4. **Textbook chapters (via NotebookLM)**: When a correctness question requires actual chapter content beyond what the indices provide, ask Corrado to query NotebookLM for a detailed summary of the relevant chapter. This provides an authoritative source without attempting to parse PDFs directly. Optional — use when the indices aren't enough.
+5. **Notebook content**: `ml-code-companion/notebooks/` — what was actually covered, at what depth
+6. **Note corpus**: `psychic-patterns/ml-code-companion/notes/` — what other notes exist, how this one fits in the graph
 
 ### Level Calibration
 
@@ -134,8 +136,10 @@ This means: don't flag a note for lacking Phase 4 concepts (MLE without closed f
 | Skill/Tool | Used for |
 |------------|----------|
 | `/obsidian` | Read note content, search vault, check backlinks, verify wikilinks |
+| `ml-code-companion` git history | Real-time learning context (what's being worked on now) |
 | `ml-code-companion` progress files | Curriculum level, phase, assessment context |
 | `ml-code-companion` textbook indices | Factual correctness cross-reference |
+| NotebookLM (external, optional) | Authoritative textbook chapter summaries when indices aren't sufficient |
 | Subagents | Mechanical checks (formatting, LaTeX, frontmatter, wikilink resolution) |
 
 ## Output
