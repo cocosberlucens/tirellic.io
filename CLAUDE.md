@@ -45,12 +45,22 @@ $OBS property:set name="created" value="2026-03-28" type=date file="Untitled" va
 $OBS property:set name="tags" value="[probability, combinatorics]" type=list file="Untitled" vault="psychic-patterns"
 ```
 
+## Editorial Review
+
+Before publishing, review notes with `/editorial-review <note-name>`:
+
+1. **Phase 1**: Classifies note type (atomic, conceptual, pattern, derivation, reference)
+2. **Phase 2**: Mechanical checks (subagents) + conversational review (correctness, flow, wikilink suggestions)
+
+The review is grounded in the ml-code-companion curriculum. See `docs/superpowers/specs/2026-03-28-editorial-review-skill-design.md` for the full design.
+
 ## Content Pipeline
 
 1. Prepare note in Obsidian — use `/obsidian` skill to set frontmatter properties
-2. Set `publish: true` when ready
-3. Run `./scripts/publish.sh` — copies notes to `content/`, rewrites `topic:` → `title:`, commits, pushes
-4. Cloudflare Pages auto-builds and deploys
+2. Review with `/editorial-review <note-name>` — verify quality before publishing
+3. Set `publish: true` when ready
+4. Run `./scripts/publish.sh` — copies notes to `content/`, rewrites `topic:` → `title:`, commits, pushes
+5. Cloudflare Pages auto-builds and deploys
 
 The publish script copies only **referenced** attachments (parses `![[file]]` and `![](attachments/file)` from published notes). Orphaned images from paste-then-delete in Obsidian are excluded.
 
