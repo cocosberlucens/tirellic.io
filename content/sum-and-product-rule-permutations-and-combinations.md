@@ -108,7 +108,7 @@ There is a thread that runs across these operation, starting from the Product ru
 - some elements $\rightarrow$ *$k$-permutations*
 - ordering $\rightarrow$ *$k$-combinations*
 
-Each of these computes a smaller sets of the possible arrangements universe represented by the application of the *Product rule*. This is the same pattern found in the relationship between the *Dot product* and *Pearson correlation* described in the [[cosine-similarity-and-pearson-correlation]|dedicated note]].
+Each of these computes a smaller sets of the possible arrangements universe represented by the application of the *Product rule*. This is the same pattern found in the relationship between the *Dot product* and *Pearson correlation* described in the [[cosine-similarity-and-pearson-correlation|dedicated note]].
 
 ## Related
 
