@@ -26,7 +26,7 @@ export default ((opts?: Options) => {
             </li>
           ))}
           <li>
-            <a href="#" data-u="sayhello" data-d="tirellic.io">say hello</a>
+            <a href="javascript:void(0)" data-router-ignore data-u="sayhello" data-d="tirellic.io">say hello</a>
           </li>
         </ul>
       </footer>

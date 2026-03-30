@@ -1,13 +1,16 @@
 document.addEventListener("nav", () => {
   document.querySelectorAll("[data-u][data-d]").forEach((el) => {
     const addr = el.getAttribute("data-u") + "@" + el.getAttribute("data-d")
+    const mailto = "mailto:" + addr
     if (el.tagName === "A") {
-      el.setAttribute("href", "mailto:" + addr)
-    } else {
-      // For non-anchor elements (e.g. <span> in markdown), make clickable
-      el.style.cursor = "pointer"
-      el.style.color = "var(--secondary)"
-      el.onclick = () => { window.location.href = "mailto:" + addr }
+      ;(el as HTMLAnchorElement).href = mailto
     }
+    // Always add click handler as fallback (works for both <a> and <span>)
+    ;(el as HTMLElement).style.cursor = "pointer"
+    el.addEventListener("click", (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      window.location.href = mailto
+    })
   })
 })
