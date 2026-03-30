@@ -2,6 +2,8 @@ import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } fro
 import style from "./styles/footer.scss"
 import { version } from "../../package.json"
 import { i18n } from "../i18n"
+// @ts-ignore
+import contactScript from "./scripts/contact.inline"
 
 interface Options {
   links: Record<string, string>
@@ -24,25 +26,14 @@ export default ((opts?: Options) => {
             </li>
           ))}
           <li>
-            <a id="contact-link" href="#" data-u="sayhello" data-d="tirellic.io">say hello</a>
+            <a href="#" data-u="sayhello" data-d="tirellic.io">say hello</a>
           </li>
         </ul>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              document.addEventListener("DOMContentLoaded", function() {
-                document.querySelectorAll("[data-u][data-d]").forEach(function(el) {
-                  var addr = el.getAttribute("data-u") + "@" + el.getAttribute("data-d");
-                  el.setAttribute("href", "mailto:" + addr);
-                });
-              });
-            `,
-          }}
-        />
       </footer>
     )
   }
 
+  Footer.afterDOMLoaded = contactScript
   Footer.css = style
   return Footer
 }) satisfies QuartzComponentConstructor
