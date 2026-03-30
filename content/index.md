@@ -7,4 +7,6 @@ Hi, I'm Corrado, database and BI professional in public healthcare, studying ML 
 
 Words as a portrait: here's what I've been thinking about
 
-[#probability](/tags/probability) [#linear-algebra](/tags/linear-algebra) [#numpy](/tags/numpy)
+[\#probability](/tags/probability) [\#linear-algebra](/tags/linear-algebra) [\#numpy](/tags/numpy)
+
+<a data-u="sayhello" data-d="tirellic.io" href="#">say hello</a>

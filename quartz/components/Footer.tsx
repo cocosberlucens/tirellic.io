@@ -23,7 +23,22 @@ export default ((opts?: Options) => {
               <a href={link}>{text}</a>
             </li>
           ))}
+          <li>
+            <a id="contact-link" href="#" data-u="sayhello" data-d="tirellic.io">say hello</a>
+          </li>
         </ul>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              document.addEventListener("DOMContentLoaded", function() {
+                document.querySelectorAll("[data-u][data-d]").forEach(function(el) {
+                  var addr = el.getAttribute("data-u") + "@" + el.getAttribute("data-d");
+                  el.setAttribute("href", "mailto:" + addr);
+                });
+              });
+            `,
+          }}
+        />
       </footer>
     )
   }
