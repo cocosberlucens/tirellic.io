@@ -1,16 +1,15 @@
 document.addEventListener("nav", () => {
   document.querySelectorAll("[data-u][data-d]").forEach((el) => {
-    const addr = el.getAttribute("data-u") + "@" + el.getAttribute("data-d")
-    const mailto = "mailto:" + addr
-    if (el.tagName === "A") {
-      ;(el as HTMLAnchorElement).href = mailto
-    }
-    // Always add click handler as fallback (works for both <a> and <span>)
-    ;(el as HTMLElement).style.cursor = "pointer"
-    el.addEventListener("click", (e) => {
-      e.preventDefault()
-      e.stopPropagation()
-      window.location.href = mailto
-    })
+    const u = el.getAttribute("data-u")
+    const d = el.getAttribute("data-d")
+    const mailto = "mailto:" + u + "@" + d
+
+    // Replace element with a clean <a> that Quartz SPA won't touch
+    const link = document.createElement("a")
+    link.href = mailto
+    link.textContent = el.textContent
+    link.dataset.routerIgnore = ""
+    link.style.cursor = "pointer"
+    el.replaceWith(link)
   })
 })
