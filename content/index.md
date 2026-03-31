@@ -9,4 +9,4 @@ Words as a portrait: here's what I've been thinking about
 
 [\#probability](/tags/probability) [\#linear-algebra](/tags/linear-algebra) [\#numpy](/tags/numpy)
 
-<span class="contact-link" data-u="sayhello" data-d="tirellic.io">say hello</span>
+And, if you really want it, <span class="contact-link" data-u="sayhello" data-d="tirellic.io">say hello</span>
