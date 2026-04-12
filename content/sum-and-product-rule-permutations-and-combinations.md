@@ -20,27 +20,27 @@ The *Sum rule* entails choosing *one* outcome between either of two (or more) se
 
 ### Product rule
 
-The iterative process of finding *more than one* outcome is represented by the the *Product rule*, the possible outcomes of drawing one element in $N$ successive iterations from a set $A$ *with repetition* is given by $|A_{1}| \times |A_{2}| \times \dots |A_{N}|$ or $|A|^N$ where each $N^{th}$ iteration represents a different set, so that the Product rule, generalizing, is equivalent to the Cartesian product of all the involved sets $|A| \times |B| \times \dots |Z|$.
+The iterative process of finding *more than one* outcome is represented by the the *Product rule*, the possible outcomes of drawing one element in $n$ successive iterations from a set $A$ *with repetition* is given by $|A_{1}| \times |A_{2}| \times \dots |A_{n}|$ or $|A|^n$ where each $n^{th}$ iteration represents a different set, so that the Product rule, generalizing, is equivalent to the Cartesian product of all the involved sets $|A| \times |B| \times \dots |Z|$.
 
 ## Special cases of the Product rule: Permutations and Combinations
 
 ### Permutation
 
-The Product rule allows to compute all the possible arrangements with repetition, and it's therefore the largest number of possible elements' arrangements attainable. *Permutation* is a special case of the Product rule on the same set, where at each iteration the chosen element is discarded, until the set is exhausted, that is to say the elements are drawn without repetition*. This operation has its own name, *factorization*
+The Product rule allows to compute all the possible arrangements with repetition, and it's therefore the largest number of possible elements' arrangements attainable. *Permutation* is a special case of the Product rule on the same set, where at each iteration the chosen element is discarded, until the set is exhausted, that is to say the elements are drawn *without repetition*. This operation has its own name, *factorization*
 
 $$
-N! = N \cdot (N-1) \cdot (N-2) \cdot \dots 1 = \prod_{j=1}^{N} j
+n! = n \cdot (n-1) \cdot (n-2) \cdot \dots 1 = \prod_{j=1}^{n} j \tag{1}
 $$
 
 and it symbolizes the operation of *choosing the possible arrangements of all set's elements*.
-Notice that in the compact $\prod$ product notation the sequence here is forward (from $1$ to $N$), whereas factorization $N!$ is depicted backwards (from $N$ to $1$).
+Notice that in the compact $\prod$ product notation the sequence here is forward (from $1$ to $n$), whereas factorization $n!$ is depicted backwards (from $n$ to $1$).
 
 ### $k$-Permutation
 
 If the set isn't completely exhausted, I'm *choosing the possible arrangements of some*—call them $k$—*set's elements* and I'm doing a *partial permutation*. Like this
 
 $$
-\prod_{j=N-k+1}^{N} j = N \cdot (N-1) \cdot (N-2) \dots (N-k+1)
+\prod_{j=n-k+1}^{n} j = n \cdot (n-1) \cdot (n-2) \dots (n-k+1)
 $$
 
 For example, choosing $3$ numbers between $1$ and $7$: first iteration has $7$ numbers available, second has $6$, third has $5$, that is to say $7 \cdot 6 \cdot 5$. But *why*?
@@ -67,10 +67,10 @@ $$
 generalizing 
 
 $$
-P(N, k) = N \cdot (N-1) \cdot (N-2) \dots (N-k+1) = \frac{N!}{(N-k)!}
+P(n, k) = n \cdot (n-1) \cdot (n-2) \dots (n-k+1) = \frac{n!}{(n-k)!}\tag{2}
 $$
 
-that spoken in natural language is defined as *the number of $k$-Permutations of $N$ objects is $P(N,k)$*, that reads as *$N$ pick $k$*.
+that spoken in natural language is defined as *the number of $k$-Permutations of $n$ objects is $P(n,k)$*, that reads as *$n$ pick $k$*.
 
 ### $k$-Combination
 
@@ -78,25 +78,25 @@ $k$-Permutations forget about *some elements*, what if I want to *forget also ab
 
 In how many ways can I arrange the 3 numbers of the $k$-Permutations example? This is a simple permutation, hence $3!$, and it represents something I don't want because these $3!$ arrangements all give me the same sum. 
 
-Just like I have done to subtract the $N-k$ elements from the permutation $N!$
+Just like I have done to subtract the $n-k$ elements from the permutation $n!$
 
 $$
-\frac{N!}{(N-k)!}
+\frac{n!}{(n-k)!}
 $$
 
 I need to subtract $k!$ repeated arrangements, hence
 
 $$
-\frac{P(N,k)}{k!}
+\frac{P(n,k)}{k!}
 $$
 
 that, expanding, gives me
 
 $$
-C(N, k) = \binom{N}{k} = \frac{N!}{k!(N-k)!}
+C(n, k) = \binom{n}{k} = \frac{n!}{k!(n-k)!}\tag{3}
 $$
 
-that reads as *$N$ choose $k$*.
+that reads as *$n$ choose $k$*.
 
 This, incidentally, means that *if order doesn't matter* there is only $1$ way to *choose all the elements of a set*. This is useless and trivial, but it closes the circle beautifully.
 
