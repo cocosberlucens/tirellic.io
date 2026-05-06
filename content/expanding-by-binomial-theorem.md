@@ -12,9 +12,7 @@ tags:
 
 This
 
-
-$$(x+y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{k} y^{(n-k)}\tag{1}$$
-
+$$(x+y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{k} y^{(n-k)} \tag{1}$$
 
 is the *binomial theorem*, and it's a way to fill $n$ slots with *combinations* of $x$'s and $y$'s that happens to also be a way to compute the coefficient of a *binomial expansion*. How so?
 
@@ -24,8 +22,7 @@ is the *binomial theorem*, and it's a way to fill $n$ slots with *combinations* 
 
 Expanding a binomial $(x+y)^{n}$ is the result of combining—by multiplying, because each $(x+y)$ factor is an independent choice and the [[sum-and-product-rule-permutations-and-combinations|product rule]] is applied—$n$ times the binomial's elements $x$ and $y$, here with $n=3$ as the diagram above shows
 
-$$(x+y)^{3} = (x+y)(x+y)(x+y)\tag{2}$$
-
+$$(x+y)^{3} = (x+y)(x+y)(x+y) \tag{2}$$
 $$= xxx + xxy + xyx + xyy + yxx + yxy + yyx + yyy$$
 
 What the binomial theorem is really saying, thus, is that a binomial expansion $\sum_{k=0}^{n}\binom{n}{k} x^{k} y^{(n-k)}$ is the sum of all the combinations of the binomial elements $x$ and $y$ required to fill $n$ sized slots—since, and maybe obviously, $k + n - k = n$—or, in other words, that *every term in the expansion is one path through those slots*.
@@ -48,9 +45,7 @@ and that is like saying that an addend consisting of $2$ times $x$ and $1$ time 
 
 Find the coefficient of $a^{3}$ in
 
-
-$$(2a - 3)^{7}\tag{3}$$
-
+$$(2a - 3)^{7} \tag{3}$$
 
 Recall $(1)$: what are my $x$ and $y$ and $n$ here? Given the obvious $n=7$, $x$ and $y$ map into the theorem like
 
